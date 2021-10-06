@@ -2,21 +2,29 @@
 
 using Integration;
 
-Func<double, double> func = (x) => x;
-double startInterval = 0;
-double endInterval = 0.5;
+Func<double, double> func = (x) => x / (2 * x + 1);
+double startInterval = 0.2;
+double endInterval = 1;
 
 Console.WriteLine("Rectangles method");
 IIntegralFinder finder = new RectanglesMethod();
-Console.WriteLine(finder.CalculateIntegralValue(func, startInterval, endInterval));
+finder.countOfPartitions = 6;
+Console.WriteLine("{0:##0.######}",finder.CalculateIntegralValue(func, startInterval, endInterval));
 Console.WriteLine();
 
 Console.WriteLine("Trapezes method");
 finder = new TrapezesMethod();
-Console.WriteLine(finder.CalculateIntegralValue(func, startInterval, endInterval));
+finder.countOfPartitions = 8;
+Console.WriteLine("{0:##0.######}", finder.CalculateIntegralValue(func, startInterval, endInterval));
 Console.WriteLine();
 
 Console.WriteLine("Simpson's method");
 finder = new SimpsonMethod();
-Console.WriteLine(finder.CalculateIntegralValue(func, startInterval, endInterval));
+finder.countOfPartitions = 2;
+Console.WriteLine("{0:##0.######}", finder.CalculateIntegralValue(func, startInterval, endInterval));
+Console.WriteLine();
+
+Console.WriteLine("Gauss's method");
+finder = new GaussMethod();
+Console.WriteLine("{0:##0.######}", finder.CalculateIntegralValue(func, startInterval, endInterval));
 Console.WriteLine();
