@@ -8,7 +8,7 @@ namespace Integration
 {
     public class TrapezesMethod : IIntegralFinder
     {
-        const int N = 100;
+        public int countOfPartitions { get; set; } = 100;
         public double CalculateIntegralValue(Func<double, double> function, double startInterval, double endInterval)
         {
             if (startInterval >= endInterval)
@@ -21,10 +21,10 @@ namespace Integration
                 throw new ArgumentNullException(nameof(function), "Function is null");
             }
 
-            double increment = (endInterval - startInterval) / N;
+            double increment = (endInterval - startInterval) / countOfPartitions;
 
             double integralValue = 0;
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < countOfPartitions; i++)
             {
                 integralValue += (function(startInterval + i * increment) + function(startInterval + (i + 1) * increment));
             }
